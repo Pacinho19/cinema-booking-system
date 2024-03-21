@@ -16,3 +16,6 @@ spring:
 
 flyway:
   baselineOnMigrate: true
+
+ticket:
+  max-paid-age: 15

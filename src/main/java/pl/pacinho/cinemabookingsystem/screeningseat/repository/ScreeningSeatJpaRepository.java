@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import pl.pacinho.cinemabookingsystem.screeningseat.model.entity.ScreeningSeat;
 
 @Repository
-public interface ScreeningSeatJpaRepository extends ScreeningSeatRepository, JpaRepository<ScreeningSeat, Integer> {
+interface ScreeningSeatJpaRepository extends ScreeningSeatRepository, JpaRepository<ScreeningSeat, Integer> {
 }

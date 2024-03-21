@@ -8,12 +8,10 @@ import pl.pacinho.cinemabookingsystem.screening.model.entity.Screening;
 import pl.pacinho.cinemabookingsystem.screening.repository.ScreeningRepository;
 import pl.pacinho.cinemabookingsystem.screeningseat.model.entity.ScreeningSeat;
 import pl.pacinho.cinemabookingsystem.screeningseat.repository.ScreeningSeatRepository;
+import pl.pacinho.cinemabookingsystem.ticket.service.TicketService;
 
 import javax.persistence.EntityNotFoundException;
-import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
-import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -23,11 +21,13 @@ public class ScreeningSeatService {
 
     private final ScreeningRepository screeningRepository;
     private final ScreeningSeatRepository screeningSeatRepository;
+    private final TicketService ticketService;
     private final Map<String, Lock> locks;
 
-    public ScreeningSeatService(ScreeningRepository screeningRepository, ScreeningSeatRepository screeningSeatRepository) {
+    public ScreeningSeatService(ScreeningRepository screeningRepository, ScreeningSeatRepository screeningSeatRepository, TicketService ticketService) {
         this.screeningRepository = screeningRepository;
         this.screeningSeatRepository = screeningSeatRepository;
+        this.ticketService = ticketService;
         this.locks = new ConcurrentHashMap<>();
     }
 
@@ -49,18 +49,14 @@ public class ScreeningSeatService {
             boolean isSeatReserved = screeningSeatRepository.existsByScreeningIdAndRowAndSeat(screeningId, row, seat);
             if (isSeatReserved)
                 throw new SeatReservationException();
+
+            ScreeningSeat screeningSeat = new ScreeningSeat(screening, row, seat);
+            return ticketService.save(screeningSeat).getUuid();
+
         } finally {
             locks.computeIfAbsent(String.valueOf(screeningId), key -> new ReentrantLock())
                     .unlock();
         }
 
-        return save(screening, row, seat).getUuid();
-
-    }
-
-    private ScreeningSeat save(Screening screening, int row, int seat) {
-        return screeningSeatRepository.save(
-                new ScreeningSeat(screening, row, seat)
-        );
     }
 }
