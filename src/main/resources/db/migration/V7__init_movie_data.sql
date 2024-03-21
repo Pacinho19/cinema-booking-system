@@ -1,0 +1,2 @@
+INSERT INTO movie (name, category_id, description, release_date, duration, img_url) VALUES
+('BUDDA. DZIECIAK 98', 10, 'Opowieść o życiu i karierze polskiego influencera Kamila Labuddy, znanego jako "BUDDA". Film ukazuje jego sukcesy w social mediach, zarabianie, oraz kulisy branży. Poznaj historię jednego z najpopularniejszych twórców internetowych w Polsce.', '2024-03-21', 4860, 'https://multikino.pl/-/media/images/film-and-events/2024/budda-dzieciak-98/budda-dzieciak-98_plakat_final-cut.jpg');
