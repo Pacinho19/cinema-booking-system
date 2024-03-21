@@ -12,6 +12,6 @@ public interface MovieRepository {
             join fetch m.category
             """)
     List<Movie> findAll();
-
     Movie save(Movie newMovie);
+    boolean existsById(Integer id);
 }

@@ -31,4 +31,8 @@ public class MovieService {
         Movie newMovie = MovieMapper.convertToEntity(movieDto, category);
         return movieRepository.save(newMovie);
     }
+
+    public boolean existsById(int id) {
+        return movieRepository.existsById(id);
+    }
 }

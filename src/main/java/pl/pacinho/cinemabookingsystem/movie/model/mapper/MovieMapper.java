@@ -15,7 +15,7 @@ public class MovieMapper {
                 .collect(Collectors.toList());
     }
 
-    private static MovieDto convertToDto(Movie movie) {
+    public static MovieDto convertToDto(Movie movie) {
         return MovieDto.builder()
                 .name(movie.getName())
                 .description(movie.getDescription())

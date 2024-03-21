@@ -8,6 +8,7 @@ import pl.pacinho.cinemabookingsystem.movie.model.dto.MovieDto;
 import pl.pacinho.cinemabookingsystem.movie.model.dto.NewMovieDto;
 import pl.pacinho.cinemabookingsystem.movie.model.entity.Movie;
 import pl.pacinho.cinemabookingsystem.movie.service.MovieService;
+import pl.pacinho.cinemabookingsystem.screening.service.ScreeningService;
 
 import java.net.URI;
 import java.util.List;
@@ -18,6 +19,7 @@ import java.util.List;
 public class MovieController {
 
     private final MovieService movieService;
+    private final ScreeningService screeningService;
 
     @GetMapping
     ResponseEntity<List<MovieDto>> getMovies() {
@@ -26,6 +28,7 @@ public class MovieController {
         );
     }
 
+    //Only for testing
     @PostMapping
     ResponseEntity<?> createMovie(@RequestBody NewMovieDto movieDto) {
         Movie save = movieService.save(movieDto);
@@ -42,5 +45,15 @@ public class MovieController {
         return ResponseEntity.created(
                 location
         ).build();
+    }
+
+    @GetMapping("/{movieId}/screening")
+    ResponseEntity<?> getScreening(@PathVariable("movieId") int movieId) {
+        if (!movieService.existsById(movieId))
+            return ResponseEntity.notFound().build();
+
+        return ResponseEntity.ok(
+                screeningService.findAllByMovieWithRoom(movieId)
+        );
     }
 }
