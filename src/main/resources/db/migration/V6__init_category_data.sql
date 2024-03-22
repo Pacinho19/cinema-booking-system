@@ -8,4 +8,5 @@ INSERT INTO category (name) VALUES
 ('Romance'),
 ('Sci-Fi'),
 ('Thriller'),
-('Documentary');
+('Documentary'),
+('Family');

@@ -4,7 +4,7 @@ create table category(
     name varchar(50) not null
 );
 
-alter table movie add column category_id int null AFTER name;
+alter table movie add column category_id int null AFTER title;
 alter table movie add foreign key (category_id) references category (id)
 
 
