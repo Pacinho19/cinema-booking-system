@@ -1,6 +1,12 @@
 package pl.pacinho.cinemabookingsystem.screening.model.dto;
 
-import pl.pacinho.cinemabookingsystem.screeningseat.model.enums.SeatState;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
-public record ScreeningSeatDto(int row, int seat, SeatState state) {
+@RequiredArgsConstructor
+@Getter
+public class ScreeningSeatDto {
+
+    private final int row;
+    private final int seat;
 }

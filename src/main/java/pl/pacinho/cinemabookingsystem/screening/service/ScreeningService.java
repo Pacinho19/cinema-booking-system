@@ -3,7 +3,7 @@ package pl.pacinho.cinemabookingsystem.screening.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.pacinho.cinemabookingsystem.screening.model.dto.ScreeningDto;
-import pl.pacinho.cinemabookingsystem.screening.model.dto.ScreeningSeatDto;
+import pl.pacinho.cinemabookingsystem.screening.model.dto.ScreeningSeatStatusDto;
 import pl.pacinho.cinemabookingsystem.screening.model.mapper.ScreeningMapper;
 import pl.pacinho.cinemabookingsystem.screening.repository.ScreeningRepository;
 import pl.pacinho.cinemabookingsystem.screening.tools.ScreeningSeatPlanGenerator;
@@ -32,7 +32,7 @@ public class ScreeningService {
         return screeningRepository.existsById(screeningId);
     }
 
-    public ScreeningSeatDto[][] findScreeningSeats(int screeningId) {
+    public ScreeningSeatStatusDto[][] findScreeningSeatsStatus(int screeningId) {
         return screeningRepository.findByIdWithFetchRoom(screeningId)
                 .map(screening -> {
                     List<ScreeningSeat> screeningSeats = screeningSeatRepository.findAllByScreeningId(screeningId);

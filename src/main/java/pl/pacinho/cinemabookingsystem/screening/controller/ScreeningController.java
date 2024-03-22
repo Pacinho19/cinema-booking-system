@@ -15,9 +15,9 @@ public class ScreeningController {
     private final ScreeningSeatService screeningSeatService;
 
     @GetMapping("/{screeningId}/seat")
-    ResponseEntity<?> getScreeningSeats(@PathVariable("screeningId") int screeningId) {
+    ResponseEntity<?> getScreeningSeatsStatus(@PathVariable("screeningId") int screeningId) {
         return ResponseEntity.ok(
-                screeningService.findScreeningSeats(screeningId)
+                screeningService.findScreeningSeatsStatus(screeningId)
         );
     }
 

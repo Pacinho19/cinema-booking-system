@@ -32,9 +32,6 @@ public class ScreeningSeat {
     @Column(name = "seat_number")
     private int seat;
 
-    @Enumerated(EnumType.STRING)
-    private SeatState state;
-
     @CreationTimestamp
     private LocalDateTime createdAt;
 
@@ -46,6 +43,5 @@ public class ScreeningSeat {
         this.screening = screening;
         this.row = row;
         this.seat = seat;
-        this.state = SeatState.UNAVAILABLE;
     }
 }
