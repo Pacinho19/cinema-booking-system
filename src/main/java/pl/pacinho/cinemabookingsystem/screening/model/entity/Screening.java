@@ -5,6 +5,7 @@ import pl.pacinho.cinemabookingsystem.movie.model.entity.Movie;
 import pl.pacinho.cinemabookingsystem.room.model.entity.Room;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -26,4 +27,6 @@ public class Screening {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "room_id")
     private Room room;
+
+    private BigDecimal ticketPrice;
 }

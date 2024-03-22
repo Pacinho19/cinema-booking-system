@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.pacinho.cinemabookingsystem.screening.service.ScreeningService;
-import pl.pacinho.cinemabookingsystem.screeningseat.service.ScreeningSeatService;
+import pl.pacinho.cinemabookingsystem.screening.seat.service.ScreeningSeatService;
 
 @RequestMapping("/screening")
 @RequiredArgsConstructor

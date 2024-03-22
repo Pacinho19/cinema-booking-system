@@ -1,4 +1,4 @@
-package pl.pacinho.cinemabookingsystem.screeningseat.service;
+package pl.pacinho.cinemabookingsystem.screening.seat.service;
 
 import org.springframework.stereotype.Service;
 import pl.pacinho.cinemabookingsystem.exception.model.IllegalSeatPositionException;
@@ -6,8 +6,8 @@ import pl.pacinho.cinemabookingsystem.exception.model.SeatReservationException;
 import pl.pacinho.cinemabookingsystem.room.model.entity.Room;
 import pl.pacinho.cinemabookingsystem.screening.model.entity.Screening;
 import pl.pacinho.cinemabookingsystem.screening.repository.ScreeningRepository;
-import pl.pacinho.cinemabookingsystem.screeningseat.model.entity.ScreeningSeat;
-import pl.pacinho.cinemabookingsystem.screeningseat.repository.ScreeningSeatRepository;
+import pl.pacinho.cinemabookingsystem.screening.seat.repository.ScreeningSeatRepository;
+import pl.pacinho.cinemabookingsystem.screening.seat.model.entity.ScreeningSeat;
 import pl.pacinho.cinemabookingsystem.ticket.service.TicketService;
 
 import javax.persistence.EntityNotFoundException;

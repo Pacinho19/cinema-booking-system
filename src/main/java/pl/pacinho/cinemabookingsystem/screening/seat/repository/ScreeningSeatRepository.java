@@ -1,8 +1,8 @@
-package pl.pacinho.cinemabookingsystem.screeningseat.repository;
+package pl.pacinho.cinemabookingsystem.screening.seat.repository;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import pl.pacinho.cinemabookingsystem.screeningseat.model.entity.ScreeningSeat;
+import pl.pacinho.cinemabookingsystem.screening.seat.model.entity.ScreeningSeat;
 
 import java.util.List;
 

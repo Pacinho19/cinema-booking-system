@@ -1,11 +1,10 @@
-package pl.pacinho.cinemabookingsystem.screeningseat.model.entity;
+package pl.pacinho.cinemabookingsystem.screening.seat.model.entity;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import pl.pacinho.cinemabookingsystem.screening.model.entity.Screening;
-import pl.pacinho.cinemabookingsystem.screeningseat.model.enums.SeatState;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;

@@ -7,8 +7,8 @@ import pl.pacinho.cinemabookingsystem.screening.model.dto.ScreeningSeatStatusDto
 import pl.pacinho.cinemabookingsystem.screening.model.mapper.ScreeningMapper;
 import pl.pacinho.cinemabookingsystem.screening.repository.ScreeningRepository;
 import pl.pacinho.cinemabookingsystem.screening.tools.ScreeningSeatPlanGenerator;
-import pl.pacinho.cinemabookingsystem.screeningseat.model.entity.ScreeningSeat;
-import pl.pacinho.cinemabookingsystem.screeningseat.repository.ScreeningSeatRepository;
+import pl.pacinho.cinemabookingsystem.screening.seat.model.entity.ScreeningSeat;
+import pl.pacinho.cinemabookingsystem.screening.seat.repository.ScreeningSeatRepository;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;

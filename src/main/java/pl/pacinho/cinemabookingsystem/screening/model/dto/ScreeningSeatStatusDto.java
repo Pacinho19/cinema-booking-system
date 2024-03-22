@@ -1,7 +1,7 @@
 package pl.pacinho.cinemabookingsystem.screening.model.dto;
 
 import lombok.Getter;
-import pl.pacinho.cinemabookingsystem.screeningseat.model.enums.SeatState;
+import pl.pacinho.cinemabookingsystem.screening.seat.model.enums.SeatState;
 
 @Getter
 public class ScreeningSeatStatusDto extends ScreeningSeatDto {

@@ -3,8 +3,8 @@ package pl.pacinho.cinemabookingsystem.screening.tools;
 import pl.pacinho.cinemabookingsystem.room.model.entity.Room;
 import pl.pacinho.cinemabookingsystem.screening.model.dto.ScreeningSeatStatusDto;
 import pl.pacinho.cinemabookingsystem.screening.model.entity.Screening;
-import pl.pacinho.cinemabookingsystem.screeningseat.model.entity.ScreeningSeat;
-import pl.pacinho.cinemabookingsystem.screeningseat.model.enums.SeatState;
+import pl.pacinho.cinemabookingsystem.screening.seat.model.entity.ScreeningSeat;
+import pl.pacinho.cinemabookingsystem.screening.seat.model.enums.SeatState;
 
 import java.util.List;
 import java.util.Map;

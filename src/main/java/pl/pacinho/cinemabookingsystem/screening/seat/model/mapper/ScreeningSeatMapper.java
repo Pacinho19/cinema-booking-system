@@ -1,7 +1,7 @@
-package pl.pacinho.cinemabookingsystem.screeningseat.model.mapper;
+package pl.pacinho.cinemabookingsystem.screening.seat.model.mapper;
 
 import pl.pacinho.cinemabookingsystem.screening.model.dto.ScreeningSeatDto;
-import pl.pacinho.cinemabookingsystem.screeningseat.model.entity.ScreeningSeat;
+import pl.pacinho.cinemabookingsystem.screening.seat.model.entity.ScreeningSeat;
 
 public class ScreeningSeatMapper {
     public static ScreeningSeatDto convert(ScreeningSeat screeningSeat) {

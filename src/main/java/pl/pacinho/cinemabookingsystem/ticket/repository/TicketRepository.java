@@ -26,4 +26,6 @@ public interface TicketRepository {
             where t.uuid=:uuid
             """)
     Optional<Ticket> findByUuidWithFetch(@Param("uuid") String uuid);
+
+    Optional<Ticket> findByUuid(String uuid);
 }
