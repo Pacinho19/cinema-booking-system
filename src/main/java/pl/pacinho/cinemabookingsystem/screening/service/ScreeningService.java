@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.pacinho.cinemabookingsystem.screening.model.dto.ScreeningDto;
 import pl.pacinho.cinemabookingsystem.screening.model.dto.ScreeningSeatStatusDto;
+import pl.pacinho.cinemabookingsystem.screening.model.dto.ScreeningWithMoveAndSeatsDto;
 import pl.pacinho.cinemabookingsystem.screening.model.mapper.ScreeningMapper;
 import pl.pacinho.cinemabookingsystem.screening.repository.ScreeningRepository;
 import pl.pacinho.cinemabookingsystem.screening.tools.ScreeningSeatPlanGenerator;
@@ -37,6 +38,15 @@ public class ScreeningService {
                 .map(screening -> {
                     List<ScreeningSeat> screeningSeats = screeningSeatRepository.findAllByScreeningId(screeningId);
                     return ScreeningSeatPlanGenerator.generate(screening, screeningSeats);
+                })
+                .orElseThrow(() -> new EntityNotFoundException("Could not find screening with given id: " + screeningId));
+    }
+
+    public ScreeningWithMoveAndSeatsDto findScreeningWithSeats(int screeningId) {
+        return screeningRepository.findByIdWithFetchRoomAndMovie(screeningId)
+                .map(screening -> {
+                    List<ScreeningSeat> screeningSeats = screeningSeatRepository.findAllByScreeningId(screeningId);
+                    return ScreeningMapper.convertToDtoWithSeats(screening, screeningSeats);
                 })
                 .orElseThrow(() -> new EntityNotFoundException("Could not find screening with given id: " + screeningId));
     }

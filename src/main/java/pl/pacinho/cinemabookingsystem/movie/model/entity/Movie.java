@@ -5,10 +5,12 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import pl.pacinho.cinemabookingsystem.category.model.entity.Category;
+import pl.pacinho.cinemabookingsystem.screening.model.entity.Screening;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.Set;
 
 @Builder
 @AllArgsConstructor
@@ -22,7 +24,7 @@ public class Movie {
     private Integer id;
 
     @NotNull
-    private String name;
+    private String title;
     @NotNull
     private String description;
 
@@ -38,4 +40,10 @@ public class Movie {
     private int duration;
 
     private String imgUrl;
+
+    @NotNull
+    private String alias;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "movie")
+    private Set<Screening> screenings;
 }

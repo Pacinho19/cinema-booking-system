@@ -25,4 +25,13 @@ public interface ScreeningRepository {
             where s.id=:id
             """)
     Optional<Screening> findByIdWithFetchRoom(@Param("id") int id);
+
+    @Query(value = """
+            from Screening s
+            join fetch s.room r
+            join fetch s.movie m
+            join fetch m.category
+            where s.id=:id
+            """)
+    Optional<Screening> findByIdWithFetchRoomAndMovie(@Param("id") int id);
 }

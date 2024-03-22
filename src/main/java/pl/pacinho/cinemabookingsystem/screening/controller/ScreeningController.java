@@ -14,6 +14,12 @@ public class ScreeningController {
     private final ScreeningService screeningService;
     private final ScreeningSeatService screeningSeatService;
 
+    @GetMapping("/{screeningId}")
+    ResponseEntity<?> getScreeningWithSeats(@PathVariable("screeningId") int screeningId) {
+        return ResponseEntity.ok(
+                screeningService.findScreeningWithSeats(screeningId)
+        );
+    }
     @GetMapping("/{screeningId}/seat")
     ResponseEntity<?> getScreeningSeatsStatus(@PathVariable("screeningId") int screeningId) {
         return ResponseEntity.ok(
