@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 @Getter
 public class TicketInfoDto {
 
+    private String uuid;
     private TicketState ticketState;
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private LocalDateTime reservationDate;

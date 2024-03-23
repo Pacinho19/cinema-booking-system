@@ -9,6 +9,7 @@ import pl.pacinho.cinemabookingsystem.ticket.model.entity.Ticket;
 public class TicketInfoDtoMapper {
     public static TicketInfoDto convert(Ticket ticket) {
         return TicketInfoDto.builder()
+                .uuid(ticket.getUuid())
                 .ticketState(ticket.getState())
                 .reservationDate(ticket.getDate())
                 .screeningSeat(ScreeningSeatMapper.convert(ticket.getScreeningSeat()))
