@@ -15,7 +15,7 @@ public class TicketPaidTask {
 
     private final TicketService ticketService;
 
-    @Scheduled(fixedRate = 1 * 60 * 1_000)
+    @Scheduled(fixedRate = 5 * 60 * 1_000)
     //Every 5 minutes
     public void cancelAllUnpaidTickets() {
         log.info("Cancelling all unpaid tickets: " + LocalDateTime.now());

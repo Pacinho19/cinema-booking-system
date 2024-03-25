@@ -4,6 +4,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import pl.pacinho.cinemabookingsystem.ticket.model.entity.Ticket;
 import pl.pacinho.cinemabookingsystem.ticket.model.enums.TicketState;
+import pl.pacinho.cinemabookingsystem.user.model.entity.CinemaUser;
 
 import java.util.List;
 import java.util.Optional;
@@ -35,7 +36,18 @@ public interface TicketRepository {
     @Query(value = """
             from Ticket t
             join fetch t.screeningSeat ss
+            join fetch ss.screening s
+            join fetch s.movie m
+            join fetch s.room r
+            join fetch m.category c
+            where t.user=:user
+            """)
+    List<Ticket> findByUserWithFetch(@Param("user") CinemaUser cinemaUser);
+
+    @Query(value = """
+            from Ticket t
+            join fetch t.screeningSeat ss
             where t.uuid=:uuid
             """)
-    Optional<Ticket> findByUuidWithFetchSeat(@Param("uuid")String uuid);
+    Optional<Ticket> findByUuidWithFetchSeat(@Param("uuid") String uuid);
 }

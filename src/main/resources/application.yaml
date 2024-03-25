@@ -18,4 +18,7 @@ flyway:
   baselineOnMigrate: true
 
 ticket:
-  max-paid-age: 1
+  max-paid-age: 15
+
+token:
+  secret: "8DjE6To5f5LQUx7oC9F94MDNIlMhpsZ0"

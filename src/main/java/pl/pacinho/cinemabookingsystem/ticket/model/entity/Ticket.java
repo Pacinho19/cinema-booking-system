@@ -6,6 +6,7 @@ import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import pl.pacinho.cinemabookingsystem.screening.seat.model.entity.ScreeningSeat;
 import pl.pacinho.cinemabookingsystem.ticket.model.enums.TicketState;
+import pl.pacinho.cinemabookingsystem.user.model.entity.CinemaUser;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -35,12 +36,16 @@ public class Ticket {
     private LocalDateTime date;
 
     private BigDecimal price;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private CinemaUser user;
 
-    public Ticket(ScreeningSeat screeningSeat) {
+    public Ticket(CinemaUser cinemaUser, ScreeningSeat screeningSeat) {
         this.uuid = UUID.randomUUID().toString();
         this.screeningSeat = screeningSeat;
         this.state = TicketState.UNPAID;
         this.price = screeningSeat.getScreening().getTicketPrice();
+        this.user = cinemaUser;
     }
 
     @PrePersist
