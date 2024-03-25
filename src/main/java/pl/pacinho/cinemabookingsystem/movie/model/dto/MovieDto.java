@@ -15,6 +15,7 @@ public class MovieDto {
 
     private final String title;
     private final String alias;
+    private final String briefDescription;
     private final String description;
     private final String category;
 

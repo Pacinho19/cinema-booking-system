@@ -21,6 +21,7 @@ public class MovieMapper {
         return MovieDto.builder()
                 .title(movie.getTitle())
                 .alias(movie.getAlias())
+                .briefDescription(movie.getBriefDescription())
                 .description(movie.getDescription())
                 .category(movie.getCategory().getName())
                 .duration(movie.getDuration())

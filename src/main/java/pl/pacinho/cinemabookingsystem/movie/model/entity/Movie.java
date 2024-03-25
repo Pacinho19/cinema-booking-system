@@ -26,6 +26,8 @@ public class Movie {
     @NotNull
     private String title;
     @NotNull
+    private String briefDescription;
+    @NotNull
     private String description;
 
     @NotNull
