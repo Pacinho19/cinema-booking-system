@@ -3,6 +3,7 @@ package pl.pacinho.cinemabookingsystem.ticket.service;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import pl.pacinho.cinemabookingsystem.screening.seat.model.entity.ScreeningSeat;
+import pl.pacinho.cinemabookingsystem.screening.seat.model.enums.SeatState;
 import pl.pacinho.cinemabookingsystem.ticket.model.dto.TicketInfoDto;
 import pl.pacinho.cinemabookingsystem.ticket.model.entity.Ticket;
 import pl.pacinho.cinemabookingsystem.ticket.model.enums.TicketState;
@@ -30,11 +31,15 @@ public class TicketService {
         );
     }
 
-    public void deleteAllUnpaidTickets() {
-        ticketRepository.findAllByState(TicketState.UNPAID)
+    public void cancelAllUnpaidTickets() {
+        ticketRepository.findAllByStateWithFetchSeat(TicketState.UNPAID)
                 .stream()
                 .filter(ticket -> ChronoUnit.MINUTES.between(ticket.getDate(), LocalDateTime.now()) > MAX_PAID_AGE)
-                .forEach(ticketRepository::delete);
+                .peek(ticket -> {
+                    ticket.setState(TicketState.CANCELLED);
+                    ticket.getScreeningSeat().setState(SeatState.CANCELLED);
+                })
+                .forEach(ticketRepository::save);
     }
 
     public TicketInfoDto getTicketInfo(String uuid) {

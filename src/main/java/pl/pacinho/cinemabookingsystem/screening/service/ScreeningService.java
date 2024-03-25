@@ -7,6 +7,7 @@ import pl.pacinho.cinemabookingsystem.screening.model.dto.ScreeningSeatStatusDto
 import pl.pacinho.cinemabookingsystem.screening.model.dto.ScreeningWithMoveAndSeatsDto;
 import pl.pacinho.cinemabookingsystem.screening.model.mapper.ScreeningMapper;
 import pl.pacinho.cinemabookingsystem.screening.repository.ScreeningRepository;
+import pl.pacinho.cinemabookingsystem.screening.seat.model.enums.SeatState;
 import pl.pacinho.cinemabookingsystem.screening.tools.ScreeningSeatPlanGenerator;
 import pl.pacinho.cinemabookingsystem.screening.seat.model.entity.ScreeningSeat;
 import pl.pacinho.cinemabookingsystem.screening.seat.repository.ScreeningSeatRepository;
@@ -36,7 +37,7 @@ public class ScreeningService {
     public ScreeningSeatStatusDto[][] findScreeningSeatsStatus(int screeningId) {
         return screeningRepository.findByIdWithFetchRoom(screeningId)
                 .map(screening -> {
-                    List<ScreeningSeat> screeningSeats = screeningSeatRepository.findAllByScreeningId(screeningId);
+                    List<ScreeningSeat> screeningSeats = screeningSeatRepository.findAllByScreeningIdAndStateIn(screeningId, List.of(SeatState.UNAVAILABLE, SeatState.RESERVED));
                     return ScreeningSeatPlanGenerator.generate(screening, screeningSeats);
                 })
                 .orElseThrow(() -> new EntityNotFoundException("Could not find screening with given id: " + screeningId));
@@ -45,7 +46,7 @@ public class ScreeningService {
     public ScreeningWithMoveAndSeatsDto findScreeningWithSeats(int screeningId) {
         return screeningRepository.findByIdWithFetchRoomAndMovie(screeningId)
                 .map(screening -> {
-                    List<ScreeningSeat> screeningSeats = screeningSeatRepository.findAllByScreeningId(screeningId);
+                    List<ScreeningSeat> screeningSeats = screeningSeatRepository.findAllByScreeningIdAndStateIn(screeningId, List.of(SeatState.UNAVAILABLE, SeatState.RESERVED));
                     return ScreeningMapper.convertToDtoWithSeats(screening, screeningSeats);
                 })
                 .orElseThrow(() -> new EntityNotFoundException("Could not find screening with given id: " + screeningId));

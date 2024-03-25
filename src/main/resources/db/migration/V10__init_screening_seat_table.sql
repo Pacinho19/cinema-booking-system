@@ -5,6 +5,7 @@ create table screening_seat (
     screening_id int not null,
     row_number int not null,
     seat_number int not null,
+    state varchar(15) not null,
     created_at datetime not null,
     updated_at datetime
 );

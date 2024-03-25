@@ -12,7 +12,12 @@ public interface TicketRepository {
 
     Ticket save(Ticket ticket);
 
-    List<Ticket> findAllByState(TicketState ticketState);
+    @Query(value = """
+            from Ticket t
+            join fetch t.screeningSeat ss
+            where t.state=:ticketState
+            """)
+    List<Ticket> findAllByStateWithFetchSeat(@Param("ticketState") TicketState ticketState);
 
     void delete(Ticket ticket);
 
@@ -27,5 +32,10 @@ public interface TicketRepository {
             """)
     Optional<Ticket> findByUuidWithFetch(@Param("uuid") String uuid);
 
-    Optional<Ticket> findByUuid(String uuid);
+    @Query(value = """
+            from Ticket t
+            join fetch t.screeningSeat ss
+            where t.uuid=:uuid
+            """)
+    Optional<Ticket> findByUuidWithFetchSeat(@Param("uuid")String uuid);
 }

@@ -32,7 +32,6 @@ public class Ticket {
     @Enumerated(EnumType.STRING)
     private TicketState state;
 
-    @CreationTimestamp
     private LocalDateTime date;
 
     private BigDecimal price;
@@ -42,5 +41,10 @@ public class Ticket {
         this.screeningSeat = screeningSeat;
         this.state = TicketState.UNPAID;
         this.price = screeningSeat.getScreening().getTicketPrice();
+    }
+
+    @PrePersist
+    void prePersist() {
+        date = LocalDateTime.now();
     }
 }

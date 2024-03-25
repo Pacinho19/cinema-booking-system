@@ -6,6 +6,7 @@ import pl.pacinho.cinemabookingsystem.exception.model.SeatReservationException;
 import pl.pacinho.cinemabookingsystem.room.model.entity.Room;
 import pl.pacinho.cinemabookingsystem.screening.model.entity.Screening;
 import pl.pacinho.cinemabookingsystem.screening.repository.ScreeningRepository;
+import pl.pacinho.cinemabookingsystem.screening.seat.model.enums.SeatState;
 import pl.pacinho.cinemabookingsystem.screening.seat.repository.ScreeningSeatRepository;
 import pl.pacinho.cinemabookingsystem.screening.seat.model.entity.ScreeningSeat;
 import pl.pacinho.cinemabookingsystem.ticket.service.TicketService;
@@ -46,7 +47,7 @@ public class ScreeningSeatService {
             locks.computeIfAbsent(String.valueOf(screeningId), key -> new ReentrantLock())
                     .lock();
 
-            boolean isSeatReserved = screeningSeatRepository.existsByScreeningIdAndRowAndSeat(screeningId, row, seat);
+            boolean isSeatReserved = screeningSeatRepository.existsByScreeningIdAndRowAndSeatAndSeatState(screeningId, row, seat, SeatState.UNAVAILABLE);
             if (isSeatReserved)
                 throw new SeatReservationException();
 
